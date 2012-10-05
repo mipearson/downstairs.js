@@ -4,7 +4,7 @@ var Downstairs = require('../lib/downstairs.js')
   , env = require('./../config/env')
   , helper = require('./helper')
   , ectypes = helper.ectypes
-  , Table = require('../lib/downstairs.js').Table
+  , Table = Downstairs.Table
   , Validator = require('validator').Validator;
 
 var userSQL = helper.userSQL;
