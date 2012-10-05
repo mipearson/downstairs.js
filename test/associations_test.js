@@ -22,9 +22,9 @@ var cheeseSQL = "CREATE TABLE cheeses\
   name character varying(100) unique NOT NULL,\
   mouse_id bigserial NOT NULL,\
   created_at timestamp with time zone NOT NULL DEFAULT now(),\
-  updated_at timestamp with time zone NOT NULL DEFAULT now(),\ 
+  updated_at timestamp with time zone NOT NULL DEFAULT now(),\
   CONSTRAINT pk_cheeses PRIMARY KEY (id)\
-);"
+);";
 
 var Cheese = Table.model(cheeseSchema);
 
@@ -47,7 +47,7 @@ var mouseTableSQL = "CREATE TABLE mice\
   created_at timestamp with time zone NOT NULL DEFAULT now(),\
   updated_at timestamp with time zone NOT NULL DEFAULT now(),\
   CONSTRAINT pk_mice PRIMARY KEY (id)\
-);"
+);";
 
 var catSchema = sql.Table.define({
       name: 'cats'
@@ -66,7 +66,7 @@ var catTableSQL = "CREATE TABLE cats\
   created_at timestamp with time zone NOT NULL DEFAULT now(),\
   updated_at timestamp with time zone NOT NULL DEFAULT now(),\
   CONSTRAINT pk_cats PRIMARY KEY (id)\
-);"
+);";
 
 var Cat = Table.model(catSchema);
 
@@ -74,3 +74,10 @@ Cheese.belongsTo(Mouse, {foreignKey: 'mouse_id', eager: true});
 Mouse.hasOne(Cheese);
 Mouse.belongsTo(Cat, {foreignKey: 'cat_id'});
 Cat.hasMany(Mouse);
+
+describe('setting up associations', function(){
+
+  it('stores associations on the Model', function(){
+    Cheese.associations.length.should.eql(1);
+  });
+});
