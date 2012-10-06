@@ -16,7 +16,6 @@ var blueprint =
     email: function(){ return faker2.Internet.email()} 
     , password: function(){ return "5f4dcc3b5aa765d61d8327deb882cf99"}
     , username: function(){ return faker2.Internet.userName()}
-    , 
   }
 }
 

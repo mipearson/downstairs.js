@@ -39,7 +39,7 @@ var mouseSchema = sql.Table.define({
     });
 
 var Mouse = Table.model(mouseSchema);
-var mouseTableSQL = "CREATE TABLE mice\
+var mouseSQL = "CREATE TABLE mice\
 (\
   id bigserial NOT NULL,\
   cat_id bigserial NOT NULL,\
@@ -75,9 +75,40 @@ Mouse.hasOne(Cheese);
 Mouse.belongsTo(Cat, {foreignKey: 'cat_id'});
 Cat.hasMany(Mouse);
 
-describe('setting up associations', function(){
+var associationsBlueprint =
+  {
+    Cheese: { 
+      name: function(){ return faker2.Internet.email() } 
+    }
+    , Mouse: { 
+      name: function(){ return faker2.Internet.email() } 
+    }
+    , Cat: { 
+      name: function(){ return faker2.Internet.email() } 
+    } 
+}
 
-  it('stores associations on the Model', function(){
-    Cheese.associations.length.should.eql(1);
-  });
+describe('setting up associations', function(){
+  var cheese, mouse1, mouse2, cat;
+
+  beforeEach(function(done){
+    helper.resetDb(mouseSQL + catTableSQL + cheeseSQL, done);
+  })
+
+  beforeEach(function(done){
+    ectypes.Cheese.create(function(err, cheese){
+      cheese = cheese;
+    })
+  })
+
+  it('finds an associated model via belongsTo', function(done){
+    console.log(cheese, " <<< cheese");
+    
+  })
+
 });
+
+
+
+
+
