@@ -122,6 +122,5 @@ describe('setting up associations', function(){
       should.exist(cheese.mouse);
       done();
     })
-  })
-
+  });
 });
