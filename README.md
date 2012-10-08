@@ -234,15 +234,16 @@ User.find({id: 1}, function(err, user){
 
 Role.find({name: 'customer'}, function(err, role){
   console.log(role.users); //null
-  role.getUsers(function(err, users){ 
+
+  role.get('users', function(err, users){ 
     console.log(role.users.length); //1
-  });  
+  });
 
   //another user is added to the customer role
   role.reload(function(err, role){
-    role.users(function(err, users){ 
+    role.get('users', function(err, users){ 
       console.log(role.users.length); //2
-    })
+    });
   });
 });
 
@@ -251,7 +252,7 @@ Role.find({name: 'customer', eager: ['users']}, function(err, role){
 });
 
 ```
-Note - eager loading defaults to false but that it can be switched to true on find statements.Also note that for every association two properties are mapped to the object - the name of the association holding data or null, and a getter function for the association accepting a callback.
+Note - eager loading defaults to false but that it can be switched to true on find statements. Also note that for every association is mapped to the model but may also be retrieved via a model.get('associationName', cb) function.
 
 ### Migrations
 
