@@ -1,7 +1,7 @@
 The README below is out of date. Read through the tests to get a sense of how Downstairs works. 
 
 # downstairs
-This project is in alpha/beta status.
+This project is in beta status.
 
 A lightweight ORM set around brianc's work on building a SQL dialect library in node-sql (https://github.com/brianc/node-sql). 
 
